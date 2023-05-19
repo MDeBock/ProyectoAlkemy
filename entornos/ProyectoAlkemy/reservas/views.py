@@ -4,6 +4,7 @@ from .models import Empleado
 
 # Create your views here.
 def index(request):
+    
     return HttpResponse("Hola mundo")
 
 def registrar_empleado(request):
@@ -20,10 +21,10 @@ def registrar_empleado(request):
 
 
 def activar_empleado(request,id_empleado):
-    print(id_empleado)
+  
     empleado=Empleado.objects.get(id=id_empleado);
-    print(empleado.activo);
     empleado.activo=True;
     empleado.save();
+
     return HttpResponse(f"Se activo el cliente {empleado.nombre} {empleado.apellido}");   
  
