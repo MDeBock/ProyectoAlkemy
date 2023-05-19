@@ -4,7 +4,7 @@ from .models import Empleado
 
 # Create your views here.
 def index(request):
-    
+
     return HttpResponse("Hola mundo")
 
 def registrar_empleado(request):
