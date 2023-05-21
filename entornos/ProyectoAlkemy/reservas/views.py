@@ -52,9 +52,9 @@ def modificar_empleado(request, id_empleado):
           
     return render(request, "reservas/modificar_empleado.html", context)
 
-def desactivar_empleado(request,id):
+def desactivar_empleado(request,id_empleado):
       
-    empleado=Empleado.objects.get(id=id)
+    empleado=Empleado.objects.get(id=id_empleado)
     empleado.activo=False
     empleado.save()
 
