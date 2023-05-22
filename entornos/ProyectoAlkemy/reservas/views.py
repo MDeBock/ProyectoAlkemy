@@ -45,9 +45,9 @@ def modificar_empleado(request, id_empleado):
         apellido = request.POST["apellido"],
         numero_legajo = request.POST["numero_legajo"],
         
-        empleado.nombre = nombre
-        empleado.apellido = apellido
-        empleado.numero_legajo = numero_legajo
+        empleado.nombre = nombre[0]
+        empleado.apellido = apellido[0]
+        empleado.numero_legajo = int(numero_legajo[0])
         empleado.save()
           
     return render(request, "reservas/modificar_empleado.html", context)
