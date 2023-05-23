@@ -28,3 +28,4 @@ def activar_empleado(request,id_empleado):
 
     return HttpResponse(f"Se activo el cliente {empleado.nombre} {empleado.apellido}");   
  
+ 
