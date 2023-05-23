@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Empleado, Cliente, Coordinador
-from django.shortcuts import get_object_or_404
-from django.forms import model_to_dict
+from django.shortcuts import get_object_or_404,redirect
 # Create your views here.
 def index(request):
 
@@ -20,14 +19,13 @@ def registrar_empleado(request):
         
     return render(request,'reservas/registrar_empleado.html');
 
-
 def activar_empleado(request,id_empleado):
   
     empleado=Empleado.objects.get(id=id_empleado);
     empleado.activo=True;
     empleado.save();
 
-    return HttpResponse(f"Se activo el empleado {empleado.nombre} {empleado.apellido}");   
+    return redirect('listado_empleados')
 
 def listado_empleados(request):
     empleados = Empleado.objects.all()
@@ -59,8 +57,7 @@ def desactivar_empleado(request,id_empleado):
     empleado.activo=False
     empleado.save()
 
-    return HttpResponse(f"El empleado {empleado.nombre} {empleado.apellido} se desactivo correctamente")
-
+    return redirect('listado_empleados')
 
 def listado_clientes(request):
     clientes = Cliente.objects.all()
