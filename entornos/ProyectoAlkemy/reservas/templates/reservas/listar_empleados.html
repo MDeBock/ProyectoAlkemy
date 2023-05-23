@@ -7,6 +7,7 @@
     <title>Listado de Empleados</title>
 </head>
 <body>
+    <a href="{% url 'registrar_empleado' %}">Agregar nuevo empleado</a>
     <table border="1">
         <thead>
             <tr>
@@ -15,6 +16,7 @@
                 <th>Apellido</th>
                 <th>Legajo</th>
                 <th>Activo</th>
+                <th colspan="2">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,8 +25,15 @@
                 <td>{{empleado.id}}</td>
                 <td>{{empleado.nombre}}</td>
                 <td>{{empleado.apellido}}</td>
-                <td>{{empleado.numero_legajo}}</td>
-                <td>{{empleado.activo}}</td>                
+                <td>{{empleado.numero_legajo}}</td>                
+                {% if empleado.activo %}
+                    <td>Si</td>
+                    <td><a href="{% url 'desactivar_empleado' empleado.id %}">Desactivar</a></td>
+                {% else %}
+                    <td>No</td>
+                    <td><a href="{% url 'activar_empleado' empleado.id %}">Activar</a></td>
+                {% endif %}
+                <td><a href="{% url 'modificar_empleado' empleado.id %}">Modificar</a></td>
             </tr>
             {% endfor %}
         </tbody>
