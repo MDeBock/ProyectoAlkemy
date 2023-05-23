@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Empleado, Cliente, Coordinador
-
+from django.shortcuts import get_object_or_404
+from django.forms import model_to_dict
 # Create your views here.
 def index(request):
 
@@ -93,3 +94,18 @@ def registrar_coordinador(request):
         )
         
     return render(request,'reservas/registrar_coordinador.html')
+
+def modificar_coordinador(request,id_coordinador):
+    coordinador = get_object_or_404(Coordinador, id=id_coordinador)
+    """ print(coordinador)
+    print(type(coordinador)) """
+    if request.method == "POST":
+        
+        coordinador.nombre = request.POST["nombre"];
+        coordinador.apellido = request.POST["apellido"];
+        coordinador.numero_documento = request.POST["numero_documento"];
+        coordinador.fecha_alta = request.POST["fecha_alta"]
+        coordinador.save();
+    
+    render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
+
