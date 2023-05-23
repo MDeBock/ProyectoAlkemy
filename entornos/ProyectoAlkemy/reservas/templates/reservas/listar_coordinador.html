@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Empleados</title>
+    <title>Listado de coordinadores</title>
 </head>
 <body>
     <table border="1">
@@ -13,18 +12,20 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Legajo</th>
+                <th>N° DNI</th>
+                <th>Fecha de alta</th>
                 <th>Activo</th>
             </tr>
         </thead>
         <tbody>
-            {% for empleado in empleados %}
+            {% for cliente in clientes %}
             <tr>
-                <td>{{empleado.id}}</td>
-                <td>{{empleado.nombre}}</td>
-                <td>{{empleado.apellido}}</td>
-                <td>{{empleado.numero_legajo}}</td>
-                <td>{{empleado.activo}}</td>                
+                <td>{{cliente.id}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.apellido}}</td>
+                <td>{{cliente.numero_documento}}</td>
+                <td>{{cliente.fecha_alta}}</td>
+                <td>{{cliente.activo}}</td>                
             </tr>
             {% endfor %}
         </tbody>
