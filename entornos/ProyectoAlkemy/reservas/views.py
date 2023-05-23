@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Empleado
+from .models import Empleado, Cliente, Coordinador
 
 # Create your views here.
 def index(request):
@@ -59,3 +59,37 @@ def desactivar_empleado(request,id_empleado):
     empleado.save()
 
     return HttpResponse(f"El empleado {empleado.nombre} {empleado.apellido} se desactivo correctamente")
+
+
+def listado_clientes(request):
+    clientes = Cliente.objects.all()
+    context = {
+        "clientes": clientes
+    }
+    return render(request, "reservas/listar_clientes.html", context)
+
+def registrar_cliente(request):
+
+    if request.POST:
+
+        Cliente.objects.create(
+            nombre = request.POST["nombre"],
+            apellido = request.POST["apellido"],
+            activo = request.POST["activo"],
+        )
+        
+    return render(request,'reservas/registrar_cliente.html')
+
+def registrar_coordinador(request):
+
+    if request.POST:
+
+        Coordinador.objects.create(
+            nombre = request.POST["nombre"],
+            apellido = request.POST["apellido"],
+            numero_documento = request.POST["numero_documento"],
+            fecha_alta = request.POST["fecha_alta"],
+            activo = request.POST["activo"],
+        )
+        
+    return render(request,'reservas/registrar_coordinador.html')
