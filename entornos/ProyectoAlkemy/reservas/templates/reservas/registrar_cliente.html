@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar un nuevo Empleado</title>
+    <title>Registrar un nuevo cliente</title>
 </head>
 <body>
     <form method="post">
@@ -15,13 +14,10 @@
         <label for="id_apellido">Apellido :</label>
         <input type="text" name="apellido" id="id_apellido">
         <br>
-        <label for="id_numerolegajo">Numero de Legajo</label>
-        <input type="number" name="numero_legajo" id="id_numerolegajo">
-        <br>
-        <button type="submit">Agregar Empleado</button>
+        <button type="submit">Agregar Cliente</button>
     </form>
     <div>
-        <a href="{% url 'listado_empleados' %}">Volver a listado de empleados</a>
+        <a href="{% url 'listado_empleados' %}">Volver a listado de clientes</a>
     </div>
 </body>
 </html>

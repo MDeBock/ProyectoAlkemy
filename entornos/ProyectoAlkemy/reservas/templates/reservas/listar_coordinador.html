@@ -6,6 +6,7 @@
     <title>Listado de coordinadores</title>
 </head>
 <body>
+    <a href="{% url 'registrar_coordinador' %}">Agregar nuevo coordinador</a>
     <table border="1">
         <thead>
             <tr>
@@ -15,17 +16,25 @@
                 <th>N° DNI</th>
                 <th>Fecha de alta</th>
                 <th>Activo</th>
+                <th colspan="2">Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for cliente in clientes %}
             <tr>
-                <td>{{cliente.id}}</td>
-                <td>{{cliente.nombre}}</td>
-                <td>{{cliente.apellido}}</td>
-                <td>{{cliente.numero_documento}}</td>
-                <td>{{cliente.fecha_alta}}</td>
-                <td>{{cliente.activo}}</td>                
+                <td>{{coordinador.id}}</td>
+                <td>{{coordinador.nombre}}</td>
+                <td>{{coordinador.apellido}}</td>
+                <td>{{coordinador.numero_documento}}</td>
+                <td>{{coordinador.fecha_alta}}</td>
+                {% if coordinador.activo %}
+                    <td>Si</td>
+                    <td><a href="{% url 'desactivar_coordinador' coordinador.id %}">Desactivar</a></td>
+                {% else %}
+                    <td>No</td>
+                    <td><a href="{% url 'activar_coordinador' coordinador.id %}">Activar</a></td>
+                {% endif %}
+                <td><a href="{% url 'modificar_coordinador' coordinadoro.id %}">Modificar</a></td>               
             </tr>
             {% endfor %}
         </tbody>
