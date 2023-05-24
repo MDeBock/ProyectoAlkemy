@@ -106,3 +106,10 @@ def modificar_coordinador(request,id_coordinador):
     
     render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
 
+def activar_coordinador(request,id_coordinador):
+      
+    coordinador = Coordinador.objects.get(id=id_coordinador)
+    coordinador.activo = True
+    coordinador.save()
+    return redirect('listado_coordinadores')
+
