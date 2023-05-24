@@ -12,4 +12,5 @@ urlpatterns = [
     path('clientes/nuevo/',views.registrar_cliente,name="registrar_cliente"),
     path('coordinadores/modificar/<int:id_coordinador>',views.modificar_coordinador,name="modificar_coordinador"),
     path('coordinadores/activar/<int:id_coordinador>',views.activar_coordinador,name="activar_coordinador"),
+    path('coordinadores/desactivar/<int:id_coordinador>',views.desactivar_coordinador,name="desactivar_coordinador"),
 ]

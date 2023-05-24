@@ -113,3 +113,10 @@ def activar_coordinador(request,id_coordinador):
     coordinador.save()
     return redirect('listado_coordinadores')
 
+def desactivar_coordinador(request,id_coordinador):
+      
+    coordinador = Coordinador.objects.get(id=id_coordinador)
+    coordinador.activo = False
+    coordinador.save()
+    return redirect('listado_coordinadores')
+
