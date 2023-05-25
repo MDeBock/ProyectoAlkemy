@@ -1,9 +1,10 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar un nuevo cliente</title>
+    <title>Agregar Coordinador</title>
 </head>
 <body>
     <form method="post">
@@ -14,10 +15,16 @@
         <label for="id_apellido">Apellido :</label>
         <input type="text" name="apellido" id="id_apellido">
         <br>
-        <button type="submit">Agregar Cliente</button>
+        <label for="id_documento">Nro Documento :</label>
+        <input type="text" name="numero_documento" id="id_documento">
+        <br>
+        <label for="id_alta">Fecha de alta :</label>
+        <input type="datetime" name="fecha_alta" id="id_alta">
+        <br>
+        <button type="submit">Agregar Coordinador</button>
     </form>
     <div>
-        <a href="{% url 'listado_clientes' %}">Volver a listado de clientes</a>
+        <a href="">Volver a listado de Coordinadores</a>
     </div>
 </body>
 </html>

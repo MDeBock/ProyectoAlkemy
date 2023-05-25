@@ -73,7 +73,7 @@ def registrar_cliente(request):
         Cliente.objects.create(
             nombre = request.POST["nombre"],
             apellido = request.POST["apellido"],
-            activo = request.POST["activo"],
+            #activo = request.POST["activo"],
         )
         
     return render(request,'reservas/registrar_cliente.html')
@@ -120,3 +120,20 @@ def desactivar_coordinador(request,id_coordinador):
     coordinador.save()
     return redirect('listado_coordinadores')
 
+def desactivar_cliente(request,id_cliente):
+
+    cliente = get_object_or_404(Cliente,id=id_cliente)
+    if cliente.activo:
+       cliente.activo=False
+       cliente.save()
+    
+    return redirect('listado_clientes')
+
+def modificar_cliente(request,id_cliente):
+
+    cliente = get_object_or_404(Cliente, id=id_cliente);
+    if request.method == "POST":
+        cliente.nombre = request.POST["nombre"]
+        cliente.apellido = request.POST["apellido"]
+    
+    return render(request,'templates/modificar_cliente.html',{"cliente":cliente})
