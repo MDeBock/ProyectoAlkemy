@@ -30,7 +30,7 @@
                     <td><a href="{% url 'desactivar_cliente' cliente.id %}">Desactivar</a></td>
                 {% else %}
                     <td>No</td>
-                    <td><a href="">Activar</a></td>
+                    <td><a href="{% url 'activar_cliente' cliente.id %}">Activar</a></td>
                 {% endif %}
                 <td><a href="{% url 'modificar_cliente' cliente.id %}">Modificar</a></td>    
             {% endfor %}
