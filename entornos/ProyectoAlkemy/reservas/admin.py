@@ -27,3 +27,9 @@ class CoordinadorAdmin(admin.ModelAdmin):
     search_fields = ("nombre", "apellido")
     list_filter = ("activo" )
     
+class ReservaServicioAdmin(admin.ModelAdmin):
+    reservaServicio = ReservaServicio
+    list_display = ("id", "fecha_creacion", "fecha_reserva", "cliente", "responsable", "empleado", "servicio", "precio")
+    search_fields = ("responsable", "cliente", "empleado", "servicio")
+    
+    

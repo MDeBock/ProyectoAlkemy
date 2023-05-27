@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Coordinador</title>
+    <title>Registrar un nuevo Coordinador</title>
 </head>
 <body>
     <form method="post">
@@ -15,16 +15,16 @@
         <label for="id_apellido">Apellido :</label>
         <input type="text" name="apellido" id="id_apellido">
         <br>
-        <label for="id_documento">Nro Documento :</label>
-        <input type="text" name="numero_documento" id="id_documento">
+        <label for="id_numero_documento">DNI</label>
+        <input type="number" name="numero_documento" id="id_numero_documento">
         <br>
-        <label for="id_alta">Fecha de alta :</label>
-        <input type="datetime" name="fecha_alta" id="id_alta">
+        <label for="id_fecha_alta">Fecha_alta</label>
+        <input type="datetime-local" name="fecha_alta" id="id_fecha_alta">
         <br>
         <button type="submit">Agregar Coordinador</button>
     </form>
     <div>
-        <a href="">Volver a listado de Coordinadores</a>
+        <a href="{% url 'listado_coordinadores' %}">Volver a listado de coordinadores</a>
     </div>
 </body>
 </html>

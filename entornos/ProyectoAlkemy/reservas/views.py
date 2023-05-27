@@ -73,7 +73,6 @@ def registrar_cliente(request):
         Cliente.objects.create(
             nombre = request.POST["nombre"],
             apellido = request.POST["apellido"],
-            #activo = request.POST["activo"],
         )
         
     return render(request,'reservas/registrar_cliente.html')
@@ -93,18 +92,19 @@ def registrar_coordinador(request):
     return render(request,'reservas/registrar_coordinador.html')
 
 def modificar_coordinador(request,id_coordinador):
+
     coordinador = get_object_or_404(Coordinador, id=id_coordinador)
-    """ print(coordinador)
-    print(type(coordinador)) """
-    if request.method == "POST":
-        
+    #Se pasa el campo del modelo de tipo datetime a string para que se puede ver en el inpu correctamente
+    coordinador.fecha_alta = coordinador.fecha_alta.strftime('%Y-%m-%d %H:%M:%S')
+
+    if request.method == "POST":        
         coordinador.nombre = request.POST["nombre"];
         coordinador.apellido = request.POST["apellido"];
         coordinador.numero_documento = request.POST["numero_documento"];
         coordinador.fecha_alta = request.POST["fecha_alta"]
         coordinador.save();
     
-    render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
+    return render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
 
 def activar_coordinador(request,id_coordinador):
       
@@ -129,11 +129,42 @@ def desactivar_cliente(request,id_cliente):
     
     return redirect('listado_clientes')
 
+def activar_cliente(request,id_cliente):
+
+    cliente = get_object_or_404(Cliente,id=id_cliente)
+    if not cliente.activo:
+       cliente.activo=True
+       cliente.save()
+
+    return redirect('listado_clientes')
+
 def modificar_cliente(request,id_cliente):
 
     cliente = get_object_or_404(Cliente, id=id_cliente);
     if request.method == "POST":
         cliente.nombre = request.POST["nombre"]
         cliente.apellido = request.POST["apellido"]
+        cliente.save();
     
-    return render(request,'templates/modificar_cliente.html',{"cliente":cliente})
+    return render(request,'reservas/modificar_cliente.html',{"cliente":cliente})
+
+def listado_coordinadores(request):
+    coordinadores = Coordinador.objects.all()
+    context = {
+        "coordinadores": coordinadores
+    }
+    return render(request, "reservas/listar_coordinador.html", context)
+
+def registrar_coordinador(request):
+
+    if request.POST:
+
+        Coordinador.objects.create(
+            nombre = request.POST["nombre"],
+            apellido = request.POST["apellido"],
+            numero_documento = request.POST["numero_documento"],
+            fecha_alta = request.POST["fecha_alta"],            
+        )
+        
+    return render(request,'reservas/registrar_coordinador.html')
+

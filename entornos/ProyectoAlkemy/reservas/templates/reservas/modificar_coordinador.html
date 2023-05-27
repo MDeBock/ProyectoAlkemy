@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Coordinador</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_nombre">Nombre :</label>
+        <input type="text" name="nombre" value="{{coordinador.nombre}}">
+        <br>
+        <label for="id_apellido">Apellido :</label>
+        <input type="text" name="apellido" value="{{coordinador.apellido}}">
+        <br>
+        <label for="id_numero_documento">Numero de Legajo</label>
+        <input type="number" name="numero_documento" value="{{coordinador.numero_documento}}">
+        <br>
+        <label for="id_fecha_alta">Fecha de alta</label>
+        <input type="datetime-local" name="fecha_alta" value="{{coordinador.fecha_alta}}">
+        <br>
+        <button type="submit">Guardar Modificacion</button>
+    </form>
+    <div>
+        <a href="{% url 'listado_coordinadores' %}">Volver a listado de coordinadores</a>
+    </div>
+</body>
+</html>
