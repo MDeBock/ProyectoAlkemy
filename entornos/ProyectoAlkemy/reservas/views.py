@@ -93,7 +93,7 @@ def registrar_coordinador(request):
     return render(request,'reservas/registrar_coordinador.html')
 
 def modificar_coordinador(request,id_coordinador):
-    
+
     coordinador = get_object_or_404(Coordinador, id=id_coordinador)
     if request.method == "POST":        
         coordinador.nombre = request.POST["nombre"];
@@ -147,3 +147,22 @@ def modificar_cliente(request,id_cliente):
         cliente.save();
     
     return render(request,'reservas/modificar_cliente.html',{"cliente":cliente})
+def listado_coordinadores(request):
+    coordinadores = Coordinador.objects.all()
+    context = {
+        "coordinadores": coordinadores
+    }
+    return render(request, "reservas/listar_coordinador.html", context)
+
+def registrar_coordinador(request):
+
+    if request.POST:
+
+        Coordinador.objects.create(
+            nombre = request.POST["nombre"],
+            apellido = request.POST["apellido"],
+            numero_documento = request.POST["numero_documento"],
+            fecha_alta = request.POST["fecha_alta"],            
+        )
+        
+    return render(request,'reservas/registrar_coordinador.html')
