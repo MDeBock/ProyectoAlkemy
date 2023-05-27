@@ -73,7 +73,6 @@ def registrar_cliente(request):
         Cliente.objects.create(
             nombre = request.POST["nombre"],
             apellido = request.POST["apellido"],
-            #activo = request.POST["activo"],
         )
         
     return render(request,'reservas/registrar_cliente.html')
@@ -95,6 +94,9 @@ def registrar_coordinador(request):
 def modificar_coordinador(request,id_coordinador):
 
     coordinador = get_object_or_404(Coordinador, id=id_coordinador)
+    #Se pasa el campo del modelo de tipo datetime a string para que se puede ver en el inpu correctamente
+    coordinador.fecha_alta = coordinador.fecha_alta.strftime('%Y-%m-%d %H:%M:%S')
+
     if request.method == "POST":        
         coordinador.nombre = request.POST["nombre"];
         coordinador.apellido = request.POST["apellido"];
@@ -102,7 +104,7 @@ def modificar_coordinador(request,id_coordinador):
         coordinador.fecha_alta = request.POST["fecha_alta"]
         coordinador.save();
     
-    render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
+    return render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
 
 def activar_coordinador(request,id_coordinador):
       
@@ -147,6 +149,7 @@ def modificar_cliente(request,id_cliente):
         cliente.save();
     
     return render(request,'reservas/modificar_cliente.html',{"cliente":cliente})
+
 def listado_coordinadores(request):
     coordinadores = Coordinador.objects.all()
     context = {
@@ -166,3 +169,4 @@ def registrar_coordinador(request):
         )
         
     return render(request,'reservas/registrar_coordinador.html')
+
