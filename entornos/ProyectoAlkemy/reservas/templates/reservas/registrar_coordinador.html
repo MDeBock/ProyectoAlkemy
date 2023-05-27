@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar un nuevo Coordinador</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_nombre">Nombre :</label>
+        <input type="text" name="nombre" id="id_nombre">
+        <br>
+        <label for="id_apellido">Apellido :</label>
+        <input type="text" name="apellido" id="id_apellido">
+        <br>
+        <label for="id_numero_documento">DNI</label>
+        <input type="number" name="numero_documento" id="id_numero_documento">
+        <br>
+        <label for="id_fecha_alta">Fecha_alta</label>
+        <input type="date" name="fecha_alta" id="id_fecha_alta">
+        <br>
+        <button type="submit">Agregar Coordinador</button>
+    </form>
+    <div>
+        <a href="{% url 'listado_coordinadores' %}">Volver a listado de coordinadores</a>
+    </div>
+</body>
+</html>

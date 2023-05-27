@@ -120,3 +120,22 @@ def desactivar_coordinador(request,id_coordinador):
     coordinador.save()
     return redirect('listado_coordinadores')
 
+def listado_coordinadores(request):
+    coordinadores = Coordinador.objects.all()
+    context = {
+        "coordinadores": coordinadores
+    }
+    return render(request, "reservas/listar_coordinador.html", context)
+
+def registrar_coordinador(request):
+
+    if request.POST:
+
+        Coordinador.objects.create(
+            nombre = request.POST["nombre"],
+            apellido = request.POST["apellido"],
+            numero_documento = request.POST["numero_documento"],
+            fecha_alta = request.POST["fecha_alta"],            
+        )
+        
+    return render(request,'reservas/registrar_coordinador.html')
