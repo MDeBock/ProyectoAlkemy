@@ -1,23 +1,27 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar un nuevo cliente</title>
+    <title>Modificar Cliente</title>
 </head>
+
 <body>
     <form method="post">
         {% csrf_token %}
         <label for="id_nombre">Nombre :</label>
-        <input type="text" name="nombre" id="id_nombre">
+        <input type="text" name="nombre" value="{{cliente.nombre}}">
         <br>
         <label for="id_apellido">Apellido :</label>
-        <input type="text" name="apellido" id="id_apellido">
+        <input type="text" name="apellido" value="{{cliente.apellido}}">
         <br>
-        <button type="submit">Agregar Cliente</button>
+        <button type="submit">Guardar Modificacion</button>
     </form>
     <div>
         <a href="{% url 'listado_clientes' %}">Volver a listado de clientes</a>
     </div>
 </body>
+
 </html>
