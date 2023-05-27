@@ -132,9 +132,7 @@ def desactivar_cliente(request,id_cliente):
 def activar_cliente(request,id_cliente):
 
     cliente = get_object_or_404(Cliente,id=id_cliente)
-    print("entro activar")
     if not cliente.activo:
-       print("entro if")
        cliente.activo=True
        cliente.save()
 
