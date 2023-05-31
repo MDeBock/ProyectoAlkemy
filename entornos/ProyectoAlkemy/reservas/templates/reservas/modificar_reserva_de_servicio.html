@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar reserva de Servicio</title>
+</head>
+
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_fecha_creacion">Fecha de creación</label>
+        <input type="datetime-local" min="{{fecha_actual}}" value="{{reserva_servicio.fecha_creacion}}" name="fecha_creacion" id="id_fecha_creacion">
+        <br>
+        <label for="id_fecha_reserva">Fecha de reserva</label>
+        <input type="datetime-local" min="{{fecha_actual}}" value="{{reserva_servicio.fecha_reserva}}" name="fecha_reserva" id="id_fecha_reserva">
+        <br>
+        <label>Cliente</label>
+        <select name="cliente">
+            {% for cliente in clientes %}
+            <option value="{{cliente.id}}">{{cliente.nombre}} {{cliente.apellido}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Responsable</label>
+        <select name="responsable">
+            {% for responsable in responsables %}
+            <option value="{{responsable.id}}">{{responsable.nombre}} {{responsable.apellido}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Empleado</label>
+        <select name="empleado" id="">
+            {% for empleado in empleados %}
+            <option value="{{empleado.id}}">{{empleado.nombre}} {{empleado.apellido}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label>Servicio</label>
+        <select name="servicio">
+            {% for servicio in servicios %}
+                <option value="{{servicio.id}}">{{servicio.nombre}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="id_precio">Precio</label>
+        <input type="number" required name="precio" value="{{reserva_servicio.precio}}" id="id_precio">
+        <br>
+        <button type="submit">Modificar reserva</button>
+    </form>
+    <a href="{% url 'listado_reservas_de_servicios' %}">Volver al listado de Reservas</a>
+</body>
+
+</html>
