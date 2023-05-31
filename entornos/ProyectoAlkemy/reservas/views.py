@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Empleado, Cliente, Coordinador
+from .models import Empleado, Cliente, Coordinador, Servicio, ReservaServicio
 from django.shortcuts import get_object_or_404,redirect
 # Create your views here.
 def index(request):
@@ -168,3 +168,52 @@ def registrar_coordinador(request):
         
     return render(request,'reservas/registrar_coordinador.html')
 
+def registrar_reserva_de_servicio(request):
+
+    clientes=Cliente.objects.filter(activo=True)
+    responsables=Coordinador.objects.filter(activo=True)
+    empleados=Empleado.objects.filter(activo=True)
+    contexto={
+        "clientes":clientes,
+        "responsables":responsables,
+        "empleados" : empleados
+    }
+    if request.method == "POST":
+        pass
+
+    print(f"contexto = {contexto}")
+
+    return render(request, "reservas/registrar_reserva_de_servicio.html",contexto)
+
+def modificar_reserva_de_servicio(request,id_reserva_servicio):
+    
+    reserva_servicio = get_object_or_404(ReservaServicio,id=id_reserva_servicio)
+    
+    clientes = Cliente.objects.filter(activo=True)
+    responsables = Coordinador.objects.filter(activo=True)
+    empleados = Empleado.objects.filter(activo=True)
+    contexto = {
+        "reserva_servicio": reserva_servicio,
+        "clientes": clientes,
+        "responsables": responsables,
+        "empleados": empleados
+    }
+    if request.method == "POST":
+        pass
+
+    return render(request,"reservas/modificar_reserva_de_servicio.html",contexto)
+
+
+def eliminar_reserva_de_servicio(request,id_reserva_servicio):
+    
+    reserva_servicio = get_object_or_404(ReservaServicio,id=id_reserva_servicio)
+    reserva_servicio.delete()
+    
+    return HttpResponse(f"Se elimino el servicio {id_reserva_servicio} correctamente");
+    #return redirect('listado_reservas_de_servicio')
+
+def listado_reservas_de_servicios(request):
+
+    reservas = ReservaServicio.objects.all();
+
+    return render(request,"reservas/listar_reservas_de_servicios.html",{"reservas":reservas})

@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Reservas de Servicio</title>
+</head>
+
+<body>
+    <a href="{% url 'registrar_reserva_de_servicio' %}">Agregar nueva reserva</a> -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha de creación</th>
+                <th>Fecha de reserva</th>
+                <th>Cliente</th>
+                <th>Responsable</th>
+                <th>Empleado</th>
+                <th>Servicio</th>
+                <th>Precio</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+            <tr>
+                <td>{{reserva.id}}</td>
+                <td>{{reserva.fecha_creacion}}</td>
+                <td>{{reserva.fecha_reserva}}</td>
+                <td>{{reserva.cliente.nombre}} {{reserva.cliente.apellido}}</td>
+                <td>{{reserva.responsable.nombre}} {{reserva.responsable.apellido}}</td>
+                <td>{{reserva.empleado.nombre}} {{reserva.empleado.apellido}}</td>
+                <td>{{reserva.servicio.nombre}}</td>
+                <td>{{reserva.precio}}</td>
+                <td><a href="{% url 'eliminar_reserva_de_servicio' %}">Eliminar</a></td>
+                <td><a href="{% url 'modificar_reserva_de_servicio' %}">Modificar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

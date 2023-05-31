@@ -18,4 +18,8 @@ urlpatterns = [
     path('coordinadores/desactivar/<int:id_coordinador>',views.desactivar_coordinador,name="desactivar_coordinador"),
     path('coordinadores/listado/', views.listado_coordinadores, name="listado_coordinadores"),
     path('coordinadores/nuevo/',views.registrar_coordinador,name="registrar_coordinador"),
+    path('nuevo/', views.registrar_reserva_de_servicio,name="registrar_reserva_de_servicio"),
+    path('modificar/<int:id_reserva_servicio', views.modificar_reserva_de_servicio,name="modificar_reserva_de_servicio"),
+    path('eliminar/<int:id_reserva_servicio', views.eliminar_reserva_de_servicio,name="eliminar_reserva_de_servicio"),
+    path('listado/', views.listado_reservas_de_servicios,name="listado_reservas_de_servicios")
 ]
