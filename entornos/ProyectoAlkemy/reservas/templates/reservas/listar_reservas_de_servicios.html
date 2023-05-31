@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <a href="{% url 'registrar_reserva_de_servicio' %}">Agregar nueva reserva</a> -->
+    <a href="{% url 'registrar_reserva_de_servicio' %}">Agregar nueva reserva</a>
     <table border="1">
         <thead>
             <tr>
@@ -34,8 +34,8 @@
                 <td>{{reserva.empleado.nombre}} {{reserva.empleado.apellido}}</td>
                 <td>{{reserva.servicio.nombre}}</td>
                 <td>{{reserva.precio}}</td>
-                <td><a href="{% url 'eliminar_reserva_de_servicio' %}">Eliminar</a></td>
-                <td><a href="{% url 'modificar_reserva_de_servicio' %}">Modificar</a></td>
+                <td><a href="{% url 'modificar_reserva_de_servicio' reserva.id %}">Modificar</a></td>
+                <td><a href="{% url 'eliminar_reserva_de_servicio' reserva.id %}">Eliminar</a></td>                
             </tr>
             {% endfor %}
         </tbody>

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Empleado, Cliente, Coordinador, Servicio, ReservaServicio
 from django.shortcuts import get_object_or_404,redirect
+from datetime import datetime
 # Create your views here.
 def index(request):
 
@@ -94,8 +95,8 @@ def registrar_coordinador(request):
 def modificar_coordinador(request,id_coordinador):
 
     coordinador = get_object_or_404(Coordinador, id=id_coordinador)
-    #Se pasa el campo del modelo de tipo datetime a string para que se puede ver en el inpu correctamente
-    coordinador.fecha_alta = coordinador.fecha_alta.strftime('%Y-%m-%d %H:%M:%S')
+    #Se pasa el campo del modelo de tipo datetime a string para que se puede ver en el input correctamente
+    coordinador.fecha_alta = formatear_fecha(coordinador.fecha_alta);
 
     if request.method == "POST":        
         coordinador.nombre = request.POST["nombre"];
@@ -155,51 +156,73 @@ def listado_coordinadores(request):
     }
     return render(request, "reservas/listar_coordinador.html", context)
 
-def registrar_coordinador(request):
+
+def registrar_servicio(request):
 
     if request.POST:
 
-        Coordinador.objects.create(
+        Servicio.objects.create(
             nombre = request.POST["nombre"],
-            apellido = request.POST["apellido"],
-            numero_documento = request.POST["numero_documento"],
-            fecha_alta = request.POST["fecha_alta"],            
+            descripcion = request.POST["descripcion"],
+            precio = request.POST["precio"],                 
         )
         
-    return render(request,'reservas/registrar_coordinador.html')
+    return render(request,'reservas/registrar_servicio.html')
 
 def registrar_reserva_de_servicio(request):
 
     clientes=Cliente.objects.filter(activo=True)
     responsables=Coordinador.objects.filter(activo=True)
     empleados=Empleado.objects.filter(activo=True)
+    servicios=Servicio.objects.filter(activo=True)
     contexto={
         "clientes":clientes,
         "responsables":responsables,
-        "empleados" : empleados
+        "empleados": empleados,
+        "servicios": servicios,
+        "fecha_actual": get_fecha_hora_actual()
     }
     if request.method == "POST":
-        pass
-
-    print(f"contexto = {contexto}")
+        ReservaServicio.objects.create(
+            fecha_creacion = request.POST["fecha_creacion"],
+            fecha_reserva = request.POST["fecha_reserva"],
+            cliente_id = request.POST["cliente"],
+            responsable_id = request.POST["responsable"],
+            empleado_id = request.POST["empleado"],
+            servicio_id = request.POST["servicio"],
+            precio = request.POST["precio"]
+        )
 
     return render(request, "reservas/registrar_reserva_de_servicio.html",contexto)
 
 def modificar_reserva_de_servicio(request,id_reserva_servicio):
     
     reserva_servicio = get_object_or_404(ReservaServicio,id=id_reserva_servicio)
-    
+    reserva_servicio.fecha_creacion = formatear_fecha(reserva_servicio.fecha_creacion)
+    reserva_servicio.fecha_reserva = formatear_fecha(reserva_servicio.fecha_reserva)
     clientes = Cliente.objects.filter(activo=True)
     responsables = Coordinador.objects.filter(activo=True)
     empleados = Empleado.objects.filter(activo=True)
+    servicios = Servicio.objects.filter(activo=True)
+
     contexto = {
         "reserva_servicio": reserva_servicio,
         "clientes": clientes,
         "responsables": responsables,
-        "empleados": empleados
+        "empleados": empleados,
+        "servicios": servicios,
+        "fecha_actual": get_fecha_hora_actual()
     }
     if request.method == "POST":
-        pass
+        reserva_servicio.fecha_creacion = request.POST["fecha_creacion"]
+        reserva_servicio.fecha_reserva = request.POST["fecha_reserva"]
+        reserva_servicio.cliente_id = request.POST["cliente"]
+        reserva_servicio.responsable_id = request.POST["responsable"]
+        reserva_servicio.empleado_id = request.POST["empleado"]
+        reserva_servicio.servicio_id = request.POST["servicio"]
+        reserva_servicio.precio = request.POST["precio"]
+        
+        reserva_servicio.save();
 
     return render(request,"reservas/modificar_reserva_de_servicio.html",contexto)
 
@@ -217,3 +240,57 @@ def listado_reservas_de_servicios(request):
     reservas = ReservaServicio.objects.all();
 
     return render(request,"reservas/listar_reservas_de_servicios.html",{"reservas":reservas})
+
+def modificar_servicio(request, id_servicio):    
+    
+    servicio=Servicio.objects.get(id=id_servicio)    
+    
+    context = {
+        "servicio": servicio
+    }
+    if request.POST:        
+        nombre = request.POST["nombre"],
+        descripcion = request.POST["descripcion"],
+        precio = request.POST["precio"],
+        
+        servicio.nombre = nombre[0]
+        servicio.descripcion = descripcion[0]
+        servicio.precio = int(precio[0])
+        servicio.save()
+          
+    return render(request, "reservas/modificar_servicio.html", context)
+
+def desactivar_servicio(request,id_servicio):
+
+    servicio = get_object_or_404(Servicio,id=id_servicio)
+    if servicio.activo:
+       servicio.activo=False
+       servicio.save()
+    
+    return redirect('listado_servicios')
+
+def activar_servicio(request,id_servicio):
+
+    servicio = get_object_or_404(Servicio,id=id_servicio)
+    if not servicio.activo:
+       servicio.activo=True
+       servicio.save()
+
+    return redirect('listado_servicios')
+
+def listado_servicios(request):
+    servicios = Servicio.objects.all()
+    context = {
+        "servicios": servicios
+    }
+    return render(request, "reservas/listar_servicios.html", context)
+
+def formatear_fecha(campo_de_modelo):
+
+    return campo_de_modelo.strftime('%Y-%m-%d %H:%M:%S')
+
+def get_fecha_hora_actual():
+    
+    fecha_actual = datetime.now()
+    fecha_actual_medianoche=datetime(fecha_actual.year,fecha_actual.month,fecha_actual.day);
+    return formatear_fecha(fecha_actual_medianoche)

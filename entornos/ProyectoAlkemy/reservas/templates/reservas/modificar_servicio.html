@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Servicio</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_nombre">Nombre :</label>
+        <input type="text" name="nombre" value="{{servicio.nombre}}">
+        <br>
+        <label for="id_descripcion">Descripcion :</label>
+        <input type="text" name="descripcion" value="{{servicio.descripcion}}">
+        <br>
+        <label for="id_precio">Precio :</label>
+        <input type="number" name="precio" value="{{servicio.precio}}">
+        <br>
+        <button type="submit">Guardar Modificacion</button>
+    </form>
+    <div>
+        <a href="{% url 'listado_servicios' %}">Volver a listado de servicios</a>
+    </div>
+</body>
+</html>

@@ -19,7 +19,12 @@ urlpatterns = [
     path('coordinadores/listado/', views.listado_coordinadores, name="listado_coordinadores"),
     path('coordinadores/nuevo/',views.registrar_coordinador,name="registrar_coordinador"),
     path('nuevo/', views.registrar_reserva_de_servicio,name="registrar_reserva_de_servicio"),
-    path('modificar/<int:id_reserva_servicio', views.modificar_reserva_de_servicio,name="modificar_reserva_de_servicio"),
-    path('eliminar/<int:id_reserva_servicio', views.eliminar_reserva_de_servicio,name="eliminar_reserva_de_servicio"),
-    path('listado/', views.listado_reservas_de_servicios,name="listado_reservas_de_servicios")
+    path('modificar/<int:id_reserva_servicio>', views.modificar_reserva_de_servicio,name="modificar_reserva_de_servicio"),
+    path('eliminar/<int:id_reserva_servicio>', views.eliminar_reserva_de_servicio,name="eliminar_reserva_de_servicio"),
+    path('listado/', views.listado_reservas_de_servicios,name="listado_reservas_de_servicios"),
+    path('servicios/nuevo/',views.registrar_servicio,name="registrar_servicio"),
+    path('servicios/modificar/<int:id_servicio>',views.modificar_servicio,name="modificar_servicio"),
+    path('servicios/desactivar/<int:id_servicio>',views.desactivar_servicio,name="desactivar_servicio"),
+    path('servicios/activar/<int:id_servicio>',views.activar_servicio,name="activar_servicio"),
+    path('servicios/listado/', views.listado_servicios, name="listado_servicios"),
 ]

@@ -7,13 +7,13 @@
     <title>Registrar registro de Servicio</title>
 </head>
 <body>
-    <form action="post">
+    <form method="post">
         {% csrf_token %}
         <label for="id_fecha_creacion">Fecha de creación</label>
-        <input type="datetime-local" name="fecha_creacion" id="id_fecha_creacion">
+        <input type="datetime-local" min="{{fecha_actual}}" name="fecha_creacion" id="id_fecha_creacion">
         <br>
         <label for="id_fecha_reserva">Fecha de reserva</label>
-        <input type="datetime-local" name="fecha_reserva" id="id_fecha_reserva">
+        <input type="datetime-local" min="{{fecha_actual}}" name="fecha_reserva" id="id_fecha_reserva">
         <br>
         <label>Cliente</label>
         <select name="cliente">
@@ -32,24 +32,24 @@
         <label>Empleado</label>
         <select name="empleado" id="">
             {% for empleado in empleados %}
-                <option value="{{empleados.id}}">{{empleado.nombre}} {{empleado.apellido}}</option>
+                <option value="{{empleado.id}}">{{empleado.nombre}} {{empleado.apellido}}</option>
             {% endfor %}
         </select>
         <br>
-<!--         <label>Servicio</label>
+        <label>Servicio</label>
         <select name="servicio">
             {% for servicio in servicios %}
-                <option value="{{servicio.id}}"></option>
+                <option value="{{servicio.id}}">{{servicio.nombre}}</option>
             {% endfor %}
         </select>
-        <br> -->
+        <br>
         <label for="id_precio">Precio</label>
         <input type="number" required name="precio" id="id_precio">
         <br>
         <button type="submit">Registrar reserva</button>
     </form>
     <div>
-        <a href="{% url 'listado_reservas_de_servicios'}">Volver al listado de Reservas</a>
+        <a href="{% url 'listado_reservas_de_servicios' %}">Volver al listado de Reservas</a>
     </div>
 </body>
 </html>
