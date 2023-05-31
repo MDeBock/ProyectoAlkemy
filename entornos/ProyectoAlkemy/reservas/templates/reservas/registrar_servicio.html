@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar un nuevo Servicio</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <label for="id_nombre">Nombre :</label>
+        <input type="text" name="nombre" id="id_nombre" required>
+        <br>
+        <label for="id_descripcion">Descripcion :</label>
+        <input type="text" name="descripcion" id="id_descripcion" required>
+        <br>
+        <label for="id_precio">Precio</label>
+        <input type="number" name="precio" id="id_nprecio" required>
+        <br>
+        <button type="submit">Agregar Servicio</button>
+    </form>
+    <div>
+        <a href="{% url 'listado_servicios' %}">Volver a listado de Servicios</a>
+    </div>
+</body>
+</html>

@@ -18,4 +18,9 @@ urlpatterns = [
     path('coordinadores/desactivar/<int:id_coordinador>',views.desactivar_coordinador,name="desactivar_coordinador"),
     path('coordinadores/listado/', views.listado_coordinadores, name="listado_coordinadores"),
     path('coordinadores/nuevo/',views.registrar_coordinador,name="registrar_coordinador"),
+    path('servicios/nuevo/',views.registrar_servicio,name="registrar_servicio"),
+    path('servicios/modificar/<int:id_servicio>',views.modificar_servicio,name="modificar_servicio"),
+    path('servicios/desactivar/<int:id_servicio>',views.desactivar_servicio,name="desactivar_servicio"),
+    path('servicios/activar/<int:id_servicio>',views.activar_servicio,name="activar_servicio"),
+    path('servicios/listado/', views.listado_servicios, name="listado_servicios"),
 ]
