@@ -10,13 +10,13 @@
     <form method="post">
         {% csrf_token %}
         <label for="id_nombre">Nombre :</label>
-        <input type="text" name="nombre" id="id_nombre">
+        <input type="text" name="nombre" id="id_nombre" required>
         <br>
         <label for="id_apellido">Apellido :</label>
-        <input type="text" name="apellido" id="id_apellido">
+        <input type="text" name="apellido" id="id_apellido" required>
         <br>
         <label for="id_numerolegajo">Numero de Legajo</label>
-        <input type="number" name="numero_legajo" id="id_numerolegajo">
+        <input type="number" name="numero_legajo" id="id_numerolegajo" required>
         <br>
         <button type="submit">Agregar Empleado</button>
     </form>

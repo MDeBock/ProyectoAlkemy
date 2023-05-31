@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Empleado, Cliente, Coordinador
+from .models import *
 from django.shortcuts import get_object_or_404,redirect
 # Create your views here.
 def index(request):
@@ -155,16 +155,60 @@ def listado_coordinadores(request):
     }
     return render(request, "reservas/listar_coordinador.html", context)
 
-def registrar_coordinador(request):
+
+def registrar_servicio(request):
 
     if request.POST:
 
-        Coordinador.objects.create(
+        Servicio.objects.create(
             nombre = request.POST["nombre"],
-            apellido = request.POST["apellido"],
-            numero_documento = request.POST["numero_documento"],
-            fecha_alta = request.POST["fecha_alta"],            
+            descripcion = request.POST["descripcion"],
+            precio = request.POST["precio"],                 
         )
         
-    return render(request,'reservas/registrar_coordinador.html')
+    return render(request,'reservas/registrar_servicio.html')
 
+
+def modificar_servicio(request, id_servicio):    
+    
+    servicio=Servicio.objects.get(id=id_servicio)    
+    
+    context = {
+        "servicio": servicio
+    }
+    if request.POST:        
+        nombre = request.POST["nombre"],
+        descripcion = request.POST["descripcion"],
+        precio = request.POST["precio"],
+        
+        servicio.nombre = nombre[0]
+        servicio.descripcion = descripcion[0]
+        servicio.precio = int(precio[0])
+        servicio.save()
+          
+    return render(request, "reservas/modificar_servicio.html", context)
+
+def desactivar_servicio(request,id_servicio):
+
+    servicio = get_object_or_404(Servicio,id=id_servicio)
+    if servicio.activo:
+       servicio.activo=False
+       servicio.save()
+    
+    return redirect('listado_servicios')
+
+def activar_servicio(request,id_servicio):
+
+    servicio = get_object_or_404(Servicio,id=id_servicio)
+    if not servicio.activo:
+       servicio.activo=True
+       servicio.save()
+
+    return redirect('listado_servicios')
+
+def listado_servicios(request):
+    servicios = Servicio.objects.all()
+    context = {
+        "servicios": servicios
+    }
+    return render(request, "reservas/listar_servicios.html", context)

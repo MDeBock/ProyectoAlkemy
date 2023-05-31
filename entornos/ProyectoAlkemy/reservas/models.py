@@ -5,13 +5,13 @@ from django.db import models
 class Empleado(models.Model):
     nombre = models.CharField(verbose_name="Nombre",max_length=50)
     apellido = models.CharField(verbose_name="Apellido",max_length=50)
-    numero_legajo = models.IntegerField(verbose_name="Numero de legajo")
+    numero_legajo = models.IntegerField(verbose_name="Numero de legajo", unique=True)
     activo = models.BooleanField(verbose_name="Activo",default=True)
 
 class Coordinador(models.Model):
     nombre = models.CharField(verbose_name="Nombre",max_length=50)
     apellido = models.CharField(verbose_name="Apellido",max_length=50)
-    numero_documento = models.IntegerField(verbose_name="Numero de documento")
+    numero_documento = models.IntegerField(verbose_name="Numero de documento", unique=True)
     fecha_alta = models.DateTimeField(verbose_name="Fecha de alta")
     activo = models.BooleanField(verbose_name="Activo",default=True)
 
