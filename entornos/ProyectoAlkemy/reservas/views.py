@@ -4,6 +4,7 @@ from .models import Empleado, Cliente, Coordinador, Servicio, ReservaServicio
 from django.shortcuts import get_object_or_404,redirect
 from datetime import datetime
 from django.contrib import messages
+from django.db import IntegrityError
 # Create your views here.
 def index(request):
 
@@ -23,17 +24,18 @@ def index(request):
  """
 def registrar_empleado(request):
 
-    if request.method == "POST":
-        
+    if request.method == "POST":        
         try:
             Empleado.objects.create(
             nombre = request.POST["nombre"],
             apellido = request.POST["apellido"],
             numero_legajo = request.POST["numero_legajo"],
             );
-        except Exception:
-            return HttpResponse('Los datos ingresados no son correctos o esta intentando ingresar un valor existente')
-            #messages.error(request, "Error")
+            messages.add_message(request,messages.SUCCESS,f"""Se registró {request.POST['nombre']} 
+                                 {request.POST['apellido']} con numero de legajo {request.POST['numero_legajo']} correctamente""")
+        except IntegrityError:
+
+            messages.add_message(request,messages.ERROR,f"El numero de legajo {request.POST['numero_legajo']} ya se encuentra registrado")
             
     return render(request, 'reservas/registrar_empleado.html')
     
@@ -57,15 +59,20 @@ def modificar_empleado(request, id_empleado):
     context = {
         "empleado": empleado
     }
-    if request.POST:        
-        nombre = request.POST["nombre"],
-        apellido = request.POST["apellido"],
-        numero_legajo = request.POST["numero_legajo"],
-        
-        empleado.nombre = nombre[0]
-        empleado.apellido = apellido[0]
-        empleado.numero_legajo = int(numero_legajo[0])
-        empleado.save()
+    if request.method == "POST":  
+        try:
+
+            empleado.nombre = request.POST["nombre"]
+            empleado.apellido = request.POST["apellido"]
+            empleado.numero_legajo = request.POST["numero_legajo"]
+            empleado.save()
+            messages.add_message(request, messages.SUCCESS, f"""Se modifico {request.POST['nombre']} 
+                                 {request.POST['apellido']} con numero de legajo {request.POST['numero_legajo']} correctamente""")
+       
+        except IntegrityError:
+
+            messages.add_message(
+                request, messages.ERROR, f"El numero de legajo {request.POST['numero_legajo']} ya se encuentra registrado")
           
     return render(request, "reservas/modificar_empleado.html", context)
 
@@ -97,15 +104,20 @@ def registrar_cliente(request):
 
 def registrar_coordinador(request):
 
-    if request.POST:
+    if request.method == "POST":
+        try:    
+            Coordinador.objects.create(
+                nombre = request.POST["nombre"],
+                apellido = request.POST["apellido"],
+                numero_documento = request.POST["numero_documento"],
+                fecha_alta = request.POST["fecha_alta"]
+            )
+            messages.add_message(request, messages.SUCCESS, f"""Se registró {request.POST['nombre']} 
+                                 {request.POST['apellido']} con numero de documento {request.POST['numero_documento']} correctamente""")
+        except IntegrityError:
 
-        Coordinador.objects.create(
-            nombre = request.POST["nombre"],
-            apellido = request.POST["apellido"],
-            numero_documento = request.POST["numero_documento"],
-            fecha_alta = request.POST["fecha_alta"],
-            activo = request.POST["activo"],
-        )
+            messages.add_message(request,messages.ERROR,f"El numero de documento {request.POST['numero_documento']} ya se encuentra registrado")
+            
         
     return render(request,'reservas/registrar_coordinador.html')
 
@@ -115,12 +127,19 @@ def modificar_coordinador(request,id_coordinador):
     #Se pasa el campo del modelo de tipo datetime a string para que se puede ver en el input correctamente
     coordinador.fecha_alta = formatear_fecha(coordinador.fecha_alta);
 
-    if request.method == "POST":        
-        coordinador.nombre = request.POST["nombre"];
-        coordinador.apellido = request.POST["apellido"];
-        coordinador.numero_documento = request.POST["numero_documento"];
-        coordinador.fecha_alta = request.POST["fecha_alta"]
-        coordinador.save();
+    if request.method == "POST": 
+        try:
+            
+            coordinador.nombre = request.POST["nombre"];
+            coordinador.apellido = request.POST["apellido"];
+            coordinador.numero_documento = request.POST["numero_documento"];
+            coordinador.fecha_alta = request.POST["fecha_alta"]
+            coordinador.save();
+            messages.add_message(request, messages.SUCCESS, f"""Se modifico {request.POST['nombre']} 
+                                 {request.POST['apellido']} con numero de documento {request.POST['numero_documento']} correctamente""")
+        except IntegrityError:
+            messages.add_message(
+                request, messages.ERROR, f"El numero de documento {request.POST['numero_documento']} ya se encuentra registrado")
     
     return render(request,'reservas/modificar_coordinador.html',{"coordinador": coordinador})
 
