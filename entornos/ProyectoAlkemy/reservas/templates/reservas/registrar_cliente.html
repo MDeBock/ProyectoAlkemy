@@ -9,10 +9,10 @@
     <form method="post">
         {% csrf_token %}
         <label for="id_nombre">Nombre :</label>
-        <input type="text" pattern="[A-Za-z]+" name="nombre" id="id_nombre">
+        <input type="text" pattern="[A-Za-z ]+" required title="Ingresa solo letras" name="nombre" id="id_nombre">
         <br>
         <label for="id_apellido">Apellido :</label>
-        <input type="text" name="apellido" id="id_apellido" required>
+        <input type="text" pattern="[A-Za-z ]+" required title="Ingresa solo letras" name="apellido" id="id_apellido">
         <br>
         <button type="submit">Agregar Cliente</button>
     </form>

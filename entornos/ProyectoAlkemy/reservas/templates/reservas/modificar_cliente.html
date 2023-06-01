@@ -12,10 +12,10 @@
     <form method="post">
         {% csrf_token %}
         <label for="id_nombre">Nombre :</label>
-        <input type="text" name="nombre" value="{{cliente.nombre}}">
+        <input type="text" pattern="[A-Za-z ]+" required title="Ingresa solo letras" name="nombre" value="{{cliente.nombre}}">
         <br>
         <label for="id_apellido">Apellido :</label>
-        <input type="text" name="apellido" value="{{cliente.apellido}}">
+        <input type="text" pattern="[A-Za-z ]+" required title="Ingresa solo letras" name="apellido" value="{{cliente.apellido}}">
         <br>
         <button type="submit">Guardar Modificacion</button>
     </form>
