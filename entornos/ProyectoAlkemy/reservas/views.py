@@ -3,12 +3,13 @@ from django.http import HttpResponse
 from .models import Empleado, Cliente, Coordinador, Servicio, ReservaServicio
 from django.shortcuts import get_object_or_404,redirect
 from datetime import datetime
+from django.contrib import messages
 # Create your views here.
 def index(request):
 
     return HttpResponse("Hola mundo")
 
-def registrar_empleado(request):
+""" def registrar_empleado(request):
 
     if request.method == "POST":
 
@@ -19,7 +20,23 @@ def registrar_empleado(request):
         );
         
     return render(request,'reservas/registrar_empleado.html');
+ """
+def registrar_empleado(request):
 
+    if request.method == "POST":
+        
+        try:
+            Empleado.objects.create(
+            nombre = request.POST["nombre"],
+            apellido = request.POST["apellido"],
+            numero_legajo = request.POST["numero_legajo"],
+            );
+        except Exception:
+            return HttpResponse('Los datos ingresados no son correctos o esta intentando ingresar un valor existente')
+            #messages.error(request, "Error")
+            
+    return render(request, 'reservas/registrar_empleado.html')
+    
 def activar_empleado(request,id_empleado):
   
     empleado=Empleado.objects.get(id=id_empleado);
