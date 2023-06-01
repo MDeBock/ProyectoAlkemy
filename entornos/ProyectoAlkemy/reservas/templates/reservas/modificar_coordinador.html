@@ -6,6 +6,13 @@
     <title>Modificar Coordinador</title>
 </head>
 <body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
     <form method="post">
         {% csrf_token %}
         <label for="id_nombre">Nombre :</label>
@@ -14,7 +21,7 @@
         <label for="id_apellido">Apellido :</label>
         <input type="text" name="apellido" value="{{coordinador.apellido}}">
         <br>
-        <label for="id_numero_documento">Numero de Legajo</label>
+        <label for="id_numero_documento">DNI</label>
         <input type="number" name="numero_documento" value="{{coordinador.numero_documento}}">
         <br>
         <label for="id_fecha_alta">Fecha de alta</label>
