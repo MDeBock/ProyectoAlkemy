@@ -4,10 +4,11 @@ from reservas.models import Servicio
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import model_to_dict
 # Create your views here.
+
 def inicio(request):
     return HttpResponse("Hola")
 
-def listado_servicios(request):
+def servicios_listado(request):
     servicios = Servicio.objects.values('id','nombre','precio')
     
     return JsonResponse(list(servicios),safe=False);
