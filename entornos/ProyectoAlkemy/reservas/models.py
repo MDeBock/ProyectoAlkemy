@@ -35,3 +35,8 @@ class ReservaServicio(models.Model):
     servicio = models.ForeignKey(Servicio,verbose_name="Servicio",on_delete=models.CASCADE,related_name="servicio")
     precio = models.IntegerField(verbose_name="Precio")
     
+    def get_fecha_creacion_formateada(self):
+        return self.fecha_creacion.strftime("%d/%m/%Y %H:%M")
+    
+    def get_fecha_reserva_formateada(self):
+        return self.fecha_reserva.strftime("%d/%m/%Y %H:%M")

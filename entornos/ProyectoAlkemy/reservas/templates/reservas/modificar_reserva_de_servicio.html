@@ -20,28 +20,44 @@
         <label>Cliente</label>
         <select name="cliente">
             {% for cliente in clientes %}
-            <option value="{{cliente.id}}">{{cliente.nombre}} {{cliente.apellido}}</option>
+                {% if reserva_servicio.cliente.id == cliente.id %}
+                    <option value="{{cliente.id}}" selected>{{cliente.nombre}} {{cliente.apellido}}</option>
+                {% else %}
+                    <option value="{{cliente.id}}">{{cliente.nombre}} {{cliente.apellido}}</option>
+                {% endif %}
             {% endfor %}
         </select>
         <br>
         <label>Responsable</label>
         <select name="responsable">
             {% for responsable in responsables %}
-            <option value="{{responsable.id}}">{{responsable.nombre}} {{responsable.apellido}}</option>
+                {% if reserva_servicio.responsable.id == responsable.id %}
+                    <option value="{{responsable.id}}" selected>{{responsable.nombre}} {{responsable.apellido}}</option>
+                {% else %}
+                    <option value="{{responsable.id}}">{{responsable.nombre}} {{responsable.apellido}}</option>
+                {% endif %}
             {% endfor %}
         </select>
         <br>
         <label>Empleado</label>
         <select name="empleado" id="">
             {% for empleado in empleados %}
-            <option value="{{empleado.id}}">{{empleado.nombre}} {{empleado.apellido}}</option>
+                {% if reserva_servicio.empleado.id == empleado.id %}
+                    <option value="{{empleado.id}}" selected>{{empleado.nombre}} {{empleado.apellido}}</option>
+                {% else %}
+                    <option value="{{empleado.id}}">{{empleado.nombre}} {{empleado.apellido}}</option>
+                {% endif %}
             {% endfor %}
         </select>
         <br>
         <label>Servicio</label>
         <select name="servicio">
             {% for servicio in servicios %}
-                <option value="{{servicio.id}}">{{servicio.nombre}}</option>
+                {% if reserva_servicio.servicio.id == servicio.id %}
+                    <option value="{{servicio.id}}" selected>{{servicio.nombre}}</option>
+                {% else %}
+                    <option value="{{servicio.id}}">{{servicio.nombre}}</option>
+                {% endif %}
             {% endfor %}
         </select>
         <br>

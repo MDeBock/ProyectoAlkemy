@@ -240,7 +240,7 @@ def modificar_reserva_de_servicio(request,id_reserva_servicio):
     responsables = Coordinador.objects.filter(activo=True)
     empleados = Empleado.objects.filter(activo=True)
     servicios = Servicio.objects.filter(activo=True)
-
+    print(len(servicios))
     contexto = {
         "reserva_servicio": reserva_servicio,
         "clientes": clientes,
