@@ -27,8 +27,9 @@
             {% for reserva in reservas %}
             <tr>
                 <td>{{reserva.id}}</td>
-                <td>{{reserva.get_fecha_creacion_formateada}}</td>
-                <td>{{reserva.get_fecha_reserva_formateada}}</td>
+                {% load tz %}
+                <td>{{reserva.fecha_creacion|localtime|date:"d/m/Y H:i"}}</td>
+                <td>{{reserva.fecha_reserva|localtime|date:"d/m/Y H:i" }}</td>
                 <td>{{reserva.cliente.nombre}} {{reserva.cliente.apellido}}</td>
                 <td>{{reserva.responsable.nombre}} {{reserva.responsable.apellido}}</td>
                 <td>{{reserva.empleado.nombre}} {{reserva.empleado.apellido}}</td>

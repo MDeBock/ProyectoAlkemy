@@ -12,7 +12,7 @@ class Coordinador(models.Model):
     nombre = models.CharField(verbose_name="Nombre",max_length=50)
     apellido = models.CharField(verbose_name="Apellido",max_length=50)
     numero_documento = models.IntegerField(verbose_name="Numero de documento", unique=True)
-    fecha_alta = models.DateTimeField(verbose_name="Fecha de alta")
+    fecha_alta = models.DateTimeField(verbose_name="Fecha de alta",auto_now_add=True)
     activo = models.BooleanField(verbose_name="Activo",default=True)
 
 class Cliente(models.Model):
@@ -27,7 +27,7 @@ class Servicio(models.Model):
     activo = models.BooleanField(verbose_name="Activo", default=True)
 
 class ReservaServicio(models.Model):
-    fecha_creacion = models.DateTimeField(verbose_name="Fecha de creacion")
+    fecha_creacion = models.DateTimeField(verbose_name="Fecha de creacion",auto_now_add=True)
     fecha_reserva = models.DateTimeField(verbose_name="Fecha de reserva")
     cliente = models.ForeignKey(Cliente,verbose_name="Cliente",on_delete=models.CASCADE,related_name="cliente")
     responsable = models.ForeignKey(Coordinador,verbose_name="Coordinador",on_delete=models.CASCADE,related_name="coordinador")

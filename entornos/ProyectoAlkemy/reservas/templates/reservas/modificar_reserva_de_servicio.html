@@ -9,13 +9,12 @@
 </head>
 
 <body>
-    <form method="post">
+
+    {% load tz %}
+    <form method="post">   
         {% csrf_token %}
-        <label for="id_fecha_creacion">Fecha de creación</label>
-        <input type="datetime-local" required min="{{fecha_actual}}" value="{{reserva_servicio.fecha_creacion}}" name="fecha_creacion" id="id_fecha_creacion">
-        <br>
         <label for="id_fecha_reserva">Fecha de reserva</label>
-        <input type="datetime-local" required min="{{fecha_actual}}" value="{{reserva_servicio.fecha_reserva}}" name="fecha_reserva" id="id_fecha_reserva">
+        <input type="datetime-local" required min="{{fecha_actual}}" value="{{reserva_servicio.fecha_reserva|localtime|date:'Y-m-d H:i'}}" name="fecha_reserva" id="id_fecha_reserva">
         <br>
         <label>Cliente</label>
         <select name="cliente">
