@@ -6,6 +6,7 @@
     <title>Listado de coordinadores</title>
 </head>
 <body>
+    {% load tz %}
     <a href="{% url 'registrar_coordinador' %}">Agregar nuevo coordinador</a>
     <table border="1">
         <thead>
@@ -26,7 +27,7 @@
                 <td>{{coordinador.nombre}}</td>
                 <td>{{coordinador.apellido}}</td>
                 <td>{{coordinador.numero_documento}}</td>
-                <td>{{coordinador.fecha_alta}}</td>
+                <td>{{coordinador.fecha_alta|localtime|date:"d/m/Y H:i"}}</td>
                 {% if coordinador.activo %}
                     <td>Si</td>
                     <td><a href="{% url 'desactivar_coordinador' coordinador.id %}">Desactivar</a></td>

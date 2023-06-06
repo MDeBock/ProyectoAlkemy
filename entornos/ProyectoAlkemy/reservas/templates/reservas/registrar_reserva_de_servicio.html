@@ -9,9 +9,9 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        <label for="id_fecha_creacion">Fecha de creación</label>
+<!--         <label for="id_fecha_creacion">Fecha de creación</label>
         <input type="datetime-local" required min="{{fecha_actual}}" name="fecha_creacion" id="id_fecha_creacion">
-        <br>
+        <br> -->
         <label for="id_fecha_reserva">Fecha de reserva</label>
         <input type="datetime-local" required min="{{fecha_actual}}" name="fecha_reserva" id="id_fecha_reserva">
         <br>
