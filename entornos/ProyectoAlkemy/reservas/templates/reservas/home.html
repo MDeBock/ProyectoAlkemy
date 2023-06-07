@@ -1,0 +1,26 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<link rel="shortcut icon" href="{% static 'img/resetImage.ico' %}" type="image/x-icon">
+<title>La Reserva</title>
+
+
+<div class="home">
+    <div class="banner">
+        <img src="{% static 'img/BANNER-01.png' %}" alt="" width="100%" id="banner">
+    </div>
+    <div class="nav">
+        <div id="div_logo">
+            <img src="{% static 'img/resetImage.png' %}" alt="" id="logo">
+            <img src="{% static 'img/resetImage (1).png' %}" alt="" id="logo_letra">
+        </div>
+        <div id="nav">
+            <a href="{% url 'listado_empleados' %}">EMPLEADOS</a>
+            <a href="{% url 'listado_coordinadores' %}">COORDINADORES</a>
+            <a href="{% url 'listado_clientes' %}">CLIENTES</a>
+            <a href="{% url 'listado_servicios' %}">SERVICIOS</a>
+            <a href="{% url 'listado_reservas_de_servicios' %}">RESERVAS_SERVICIOS</a>      
+        </div>  
+        
+    </div>
+</div>
