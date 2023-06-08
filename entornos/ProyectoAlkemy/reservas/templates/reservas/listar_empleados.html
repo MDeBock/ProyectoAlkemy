@@ -42,6 +42,8 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Legajo</th>
+                                <th>Activo</th>
+                                <th>Modificar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,10 +54,10 @@
                                 <td>{{empleado.apellido}}</td>
                                 <td>{{empleado.numero_legajo}}</td>                
                                 {% if empleado.activo %}
-                                    <td></td>
+                                   
                                     <td><a href="{% url 'desactivar_empleado' empleado.id %}"><i class='fa-solid fa-check' style='color: green;'></a></td>
                                 {% else %}
-                                    <td></i></td>
+                                   
                                     <td><a href="{% url 'activar_empleado' empleado.id %}"><i class='fa-solid fa-xmark' style='color: red;'></a></td>
                                 {% endif %}
                                 <td><a href="{% url 'modificar_empleado' empleado.id %}"><button class='btn btn-sm btn-warning'><i class='fa-solid fa-pencil'></i></button></a></td>
