@@ -41,7 +41,9 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
-                                <th>Precio</th>                                
+                                <th>Precio</th> 
+                                <th>Activo</th>
+                                <th>Modificar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,10 +54,10 @@
                                 <td>{{servicio.descripcion}}</td>
                                 <td>{{servicio.precio}}</td>                
                                 {% if servicio.activo %}
-                                    <td></td>
+                                    
                                     <td><a href="{% url 'desactivar_servicio' servicio.id %}"><i class='fa-solid fa-check' style='color: green;'></a></td>
                                 {% else %}
-                                    <td></i></td>
+                                    
                                     <td><a href="{% url 'activar_servicio' servicio.id %}"><i class='fa-solid fa-xmark' style='color: red;'></a></td>
                                 {% endif %}
                                 <td><a href="{% url 'modificar_servicio' servicio.id %}"><button class='btn btn-sm btn-warning'><i class='fa-solid fa-pencil'></i></button></a></td>
