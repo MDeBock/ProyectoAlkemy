@@ -41,7 +41,8 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>                               
-                                <th colspan="2">Acciones</th>
+                                <th>Activo</th>
+                                <th>Modificar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,10 +52,10 @@
                                 <td>{{cliente.nombre}}</td>
                                 <td>{{cliente.apellido}}</td>
                                 {% if cliente.activo %}
-                                    <td></td>
+                                    
                                     <td><a href="{% url 'desactivar_cliente' cliente.id %}"><i class='fa-solid fa-check' style='color: green;'></a></td>
                                 {% else %}
-                                    <td></i></td>
+                                    
                                     <td><a href="{% url 'activar_cliente' cliente.id %}"><i class='fa-solid fa-xmark' style='color: red;'></a></td>
                                 {% endif %}
                                 <td><a href="{% url 'modificar_cliente' cliente.id %}"><button class='btn btn-sm btn-warning'><i class='fa-solid fa-pencil'></i></button></a></td>
