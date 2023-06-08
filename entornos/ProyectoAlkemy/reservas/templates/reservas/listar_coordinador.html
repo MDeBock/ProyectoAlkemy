@@ -43,7 +43,9 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>N° DNI</th>
-                                <th>Fecha de alta</th>  
+                                <th>Fecha de alta</th>
+                                <th>Activo</th>
+                                <th>Modificar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,10 +57,10 @@
                                 <td>{{coordinador.numero_documento}}</td>
                                 <td>{{coordinador.fecha_alta|localtime|date:"d/m/Y H:i"}}</td>
                                 {% if coordinador.activo %}
-                                    <td></td>
+                              
                                     <td><a href="{% url 'desactivar_coordinador' coordinador.id %}"><i class='fa-solid fa-check' style='color: green;'></a></td>
                                 {% else %}
-                                    <td></i></td>
+                                   
                                     <td><a href="{% url 'activar_coordinador' coordinador.id %}"><i class='fa-solid fa-xmark' style='color: red;'></a></td>
                                 {% endif %}
                                 <td><a href="{% url 'modificar_coordinador' coordinador.id %}"><button class='btn btn-sm btn-warning'><i class='fa-solid fa-pencil'></i></button></a></td>
