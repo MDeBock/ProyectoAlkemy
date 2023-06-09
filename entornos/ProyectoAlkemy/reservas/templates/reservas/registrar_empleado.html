@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,68 +12,34 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-    <style type="text/css">
-        
-        .boton{
-            display: block;
-            width: 100%;
-            font-size: 18px;
-            text-decoration: none;
-            background: white;
-            border: 1px solid rgba(17, 58, 77, 0.802) ;
-            border-radius: 5px;
-            text-align: center;
-            position: relative;
-            transition: all .35s;
-            padding: 5px;
-        }
-        .boton span{
-            position: relative;
-            z-index: 2;
-        }
-
-        .boton:after{
-            position: absolute;
-            content: "";
-            border-radius: 5px;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: #0e8f9d;
-            transition: all .35s;
-        }
-
-        .boton:hover{
-            color: white;
-        
-        }
-
-        .boton:hover:after{
-            width: 100%;
-        }
-        .enlace-volver-tamanio{
-            font-size: large;
-        }
-        .fondo{
-           background-color: #d8e8eb; 
-        }
-        .color-volver{
-            background-color: #23670c;
-        }
-        .message-success{
-            background-color: #0B9334;
-        }
-        .message-error{
-            background-color: #075b7a;
-            
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/formularios.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/resetImage.ico' %}" type="image/x-icon">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/listar_empleados.css' %}" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 <body>
+    <div class="cabecera">
+        <div class="navegar">
+            <div id="div_logo">
+                <img src="{% static 'img/resetImage.png' %}" alt="" id="logo">
+                <img src="{% static 'img/resetImage (1).png' %}" alt="" id="logo_letra">
+            </div>
+            <div id="nav">
+                <a href="{% url 'listado_empleados' %}" class="a">EMPLEADOS</a>
+                <a href="{% url 'listado_coordinadores' %}" class="a">COORDINADORES</a>
+                <a href="{% url 'listado_clientes' %}" class="a">CLIENTES</a>
+                <a href="{% url 'listado_servicios' %}" class="a">SERVICIOS</a>
+                <a href="{% url 'listado_reservas_de_servicios' %}" class="a">RESERVAS DE SERVICIOS</a>
+            </div>
+        </div>
+    
+    </div>
     <div class="fondo min-vh-100 d-flex flex-column justify-content-center align-items-center">
         <!-- Contenedor del formulario botones mensajes etc -->
-        <div class="w-25">
+        <div class="contenedo-enlance-formulario w-25">
             <h5 class="color-volver mb-0 w-100 rounded-top">
                 <a class="d-flex align-items-center text-white  text-decoration-none p-2"
                     href="{% url 'listado_empleados' %}">
@@ -86,7 +53,7 @@
                     </span>
                 </a>
             </h5>
-            <div class="bg-white p-5 rounded-bottom shadow p-3 mb-5">
+            <div class="contenedor-formulario p-5 rounded-bottom shadow p-3 mb-5">
                 <h2 class="mb-4 text-center">Registrar Empleado</h2>
                 {% if messages %}
                     {% for message in messages %}

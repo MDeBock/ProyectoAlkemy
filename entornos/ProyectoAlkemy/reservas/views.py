@@ -54,8 +54,7 @@ def modificar_empleado(request, id_empleado):
             empleado.apellido = request.POST["apellido"]
             empleado.numero_legajo = request.POST["numero_legajo"]
             empleado.save()
-            messages.add_message(request, messages.SUCCESS, f"""Se modifico {request.POST['nombre']} 
-                                 {request.POST['apellido']} con numero de legajo {request.POST['numero_legajo']} correctamente""")
+            messages.add_message(request, messages.SUCCESS, f"""Se modifico correctamente""")
        
         except IntegrityError:
 

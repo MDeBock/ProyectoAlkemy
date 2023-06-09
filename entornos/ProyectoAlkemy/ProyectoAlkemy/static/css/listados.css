@@ -56,3 +56,35 @@
     text-decoration: none;    
     font-family: 'Times New Roman', Times, serif;
 }
+
+#tabla{
+    position: absolute;
+    top: 20%;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 3%;
+    margin: 8%;
+}
+
+#nuevo{
+    display: flex;
+    justify-content: right;
+    padding: 1% 0;
+}
+
+#titulos{
+    border: 1px solid black;
+}
+
+.td{
+    border: 1px solid black;
+}
+
+#div1 {
+    overflow:scroll;
+    height:400px;
+    width:100%;
+}
+#listado {
+   width:100%;
+   
+}
