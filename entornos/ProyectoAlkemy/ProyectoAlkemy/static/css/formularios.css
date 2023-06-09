@@ -1,0 +1,72 @@
+
+.boton{
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, .15);
+    border: 1px solid rgba(17, 58, 77, 0.802) ;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    transition: all .35s;
+    padding: 5px;
+}
+.boton span{
+    position: relative;
+    z-index: 2;
+}
+
+.boton:after{
+    position: absolute;
+    content: "";
+    border-radius: 5px;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #0e8f9d;
+    transition: all .35s;
+}
+
+.boton:hover{
+    color: white;
+
+}
+
+.boton:hover:after{
+    width: 100%;
+}
+.enlace-volver-tamanio{
+    font-size: large;
+}
+.fondo{
+    background-image: url('../img/BANNER-01.png');
+    height: 100%;
+    background-size: cover;
+}
+.color-volver{
+    background-color: rgba(11, 147, 52, 0.672);
+}
+.message-success{
+    background-color: rgba(11, 147, 52, 0.574);
+}
+.message-error{
+    background-color: rgba(155, 39, 10, 0.574);
+    
+}
+
+.contenedo-enlance-formulario{
+    margin-top: 140px;
+}
+
+.contenedor-formulario{
+    background-color: rgba(255, 255, 255, 0.744);  
+    color:black;
+    font-weight: 500;
+    font-size: larger;
+}
+
+input{
+    border: 1px solid black !important
+}
