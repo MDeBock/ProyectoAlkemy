@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.db import IntegrityError
 
 # Create your views here.
-def index(request):
-    return HttpResponse(f"Probando")
+def home(request):
+    return render(request, "reservas/home.html")
 
 def registrar_empleado(request):
 
