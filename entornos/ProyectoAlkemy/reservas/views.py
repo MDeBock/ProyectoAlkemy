@@ -232,7 +232,7 @@ def modificar_reserva_de_servicio(request,id_reserva_servicio):
         reserva_servicio.cliente_id = request.POST["cliente"]
         reserva_servicio.responsable_id = request.POST["responsable"]
         reserva_servicio.empleado_id = request.POST["empleado"]
-        reserva_servicio.servicio_id = request.POST["servicio"]
+        reserva_servicio.servicio_id = request.POST["opcion"]
         reserva_servicio.precio = request.POST["precio"]
         
         reserva_servicio.save();
