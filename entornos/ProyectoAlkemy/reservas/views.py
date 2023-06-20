@@ -206,7 +206,7 @@ def registrar_reserva_de_servicio(request):
             cliente_id = request.POST["cliente"],
             responsable_id = request.POST["responsable"],
             empleado_id = request.POST["empleado"],
-            servicio_id = request.POST["servicio"],
+            servicio_id = request.POST["opcion"],
             precio = request.POST["precio"]
         )
     

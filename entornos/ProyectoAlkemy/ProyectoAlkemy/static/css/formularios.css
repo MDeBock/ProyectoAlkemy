@@ -29,9 +29,18 @@
     transition: all .35s;
 }
 
+.boton-servicios::after{
+    background-color: aliceblue;
+    
+}
+
 .boton:hover{
     color: white;
 
+}
+
+.boton-servicios:hover{
+    color: black; 
 }
 
 .boton:hover:after{
@@ -69,4 +78,9 @@
 
 input{
     border: 1px solid black !important
+}
+
+.cabecera-modal{
+    background-color:rgba(11, 147, 52, 0.672) ;
+    color: white;
 }
