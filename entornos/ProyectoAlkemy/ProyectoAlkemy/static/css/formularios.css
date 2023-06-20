@@ -84,3 +84,12 @@ input{
     background-color:rgba(11, 147, 52, 0.672) ;
     color: white;
 }
+
+.modal-servicio{
+    background-color: rgba(255, 255, 255, 0.944);
+    
+}
+.items-servicio{
+    font-size: large;
+    font-weight: 100;
+}

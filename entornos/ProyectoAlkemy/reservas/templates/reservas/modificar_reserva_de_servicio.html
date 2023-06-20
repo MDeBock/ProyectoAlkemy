@@ -118,7 +118,7 @@
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
+                                    <div class="modal-content modal-servicio">
                                         <div class="modal-header cabecera-modal">
                                             <h5 class="modal-title text-center" id="exampleModalLabel">Lista de Servicios</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -129,8 +129,9 @@
                                                 <div class="col-3">Precio</div>
                                                 <div class="col-3">Seleccionar</div>
                                             </div>
+                                            <hr>
                                             {% for servicio in servicios %}
-                                            <div class="row mb-2 ">
+                                            <div class="row mb-2 items-servicio">
                                                 <div class="col-6">{{servicio.nombre}}</div>
                                                 <div class="col-3">{{servicio.precio}}</div>
                                                 {% if servicio.id == reserva_servicio.servicio.id %}
@@ -141,6 +142,7 @@
                                                         value="{{servicio.id}}"></div>
                                                 {% endif %}
                                             </div>
+                                            <hr>
                                             {% endfor %}
                                         </div>
                                         <div class="modal-footer">
