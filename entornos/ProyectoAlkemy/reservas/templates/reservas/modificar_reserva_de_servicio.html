@@ -103,19 +103,10 @@
                             </select>
                         </div>
                         <div class="col-6">
-                            <!--   
-                                                                            <select id="id_select_servicio" class="form-select" name="servicio">
-                                                                                {% for servicio in servicios %}
-                                                                                    <option value="{{servicio.id}}">{{servicio.nombre}}</option>
-                                                                                {% endfor %}   
-                                                                            </select> -->
-                            <!-- Button trigger modal -->
                             <label>Servicio</label>
                             <button type="button" class="boton boton-servicios" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <span id="id_span_servicio_boton">{{reserva_servicio.servicio.nombre}}</span>
                             </button>
-                        
-                            <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content modal-servicio">
